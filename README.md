@@ -1,4 +1,3 @@
-annotorious-semantic-tagging-plugin
-===================================
+# Annotorious Semantic Tagging Plugin
 
-A Semantic Tagging plugin for Annotorious
+
