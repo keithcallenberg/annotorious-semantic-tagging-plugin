@@ -46,6 +46,7 @@ annotorious.plugin.SemanticTagging.prototype.onInitAnnotator = function(annotato
               link.innerHTML = topic.title;
               container.appendChild(link);
 
+              // TODO click should toggle, rather than add (and add, and add, and add...)
               jQuery(link).addClass('semantic-tag').click(function() {
                 if (!annotation.tags)
                   annotation.tags = [];
@@ -63,6 +64,9 @@ annotorious.plugin.SemanticTagging.prototype.onInitAnnotator = function(annotato
   // Editor, step 2 - add a field (that empties itself)
   annotator.editor.addField(function(annotation) {
     container.innerHTML = '';
+
+    // TODO this should list existing tags, not empty
+
     return container;
   });
 }
