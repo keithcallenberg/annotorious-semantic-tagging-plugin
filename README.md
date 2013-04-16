@@ -10,8 +10,16 @@ they are not only strings, but (underneath the hood) include a link to their cor
 
 ![Semantic Tagging Screenshot](http://github.com/annotorious/annotorious-semantic-tagging-plugin/raw/master/semantic-tagging-screenshot.jpg "Semantic Tagging Screenshot")
 
-TODO - demo page on http://annotorious.github.com
+## Live Demo
 
-TODO @behas: add server side Python scripts
+A live demo of the plugin is available [here](http://annotorious.github.com/demos/semantic-tagging-preview.html).
+Beware: beta!!
+
+## TODO
+
+There are several TODOs in the code. [Get in touch](http://groups.google.com/group/annotorious) if you want to
+contribute!
+
+__TODO__ @behas: add server side Python NER/DBpedia linking scripts
 
 
