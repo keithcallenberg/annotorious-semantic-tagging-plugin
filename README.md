@@ -21,5 +21,6 @@ There are several TODOs in the code. [Get in touch](http://groups.google.com/gro
 contribute!
 
 __TODO__ @behas: add server side Python NER/DBpedia linking scripts
+__TODO__ once we get that far, create a minified version (with uglify.js)
 
 
