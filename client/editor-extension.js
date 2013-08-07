@@ -86,6 +86,7 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
 
   // Final step: adds the field to the editor
   annotator.editor.addField(function(annotation) {
+    self._tags = [];
     container.innerHTML = '';
     if (annotation && annotation.tags) { 
       jQuery.each(annotation.tags, function(idx, topic) {
