@@ -4,12 +4,12 @@
  */
 annotorious.plugin.SemanticTagging.prototype._extendPopup = function(annotator) {
   annotator.popup.addField(function(annotation) {
-    var popupContainer = document.createElement('ddiv');
+    var popupContainer = document.createElement('div');
     if (annotation.tags) {
       jQuery.each(annotation.tags, function(idx, tag) {
         var el = document.createElement('a');
         el.href = '#';
-        el.className = 'semantic-tag';
+        el.className = 'semtagging-tag semtagging-popup-tag';
         el.innerHTML = tag.title;
         popupContainer.appendChild(el);
       });

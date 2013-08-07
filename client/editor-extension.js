@@ -13,16 +13,18 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
   container.className = 'semtagging-editor-container';
 
   // Adds a tag
-  var addSuggestion = function(annotation, topic) {
+  var addTag = function(annotation, topic, opt_css_class) {
     self._tags[topic.id] = topic;
 
     var link = document.createElement('a');
     link.href = '#';
-    link.className = 'semtagging-editor-tag';
+    link.className = 'semtagging-tag semtagging-editor-tag';
     link.innerHTML = topic.title;
     container.appendChild(link);
 
     var jqLink = jQuery(link);
+    if (opt_css_class)
+      jqLink.addClass(opt_css_class);
 
     jqLink.click(function() {
       if (!annotation.tags)
@@ -55,7 +57,7 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
         jQuery.each(data.detectedTopics, function(idx, topic) {
           // Add to cached tag list and UI, if it is not already there
           if (!self._tags[topic.id])
-            addSuggestion(annotation, topic);
+            addTag(annotation, topic);
         });
       }
     });
@@ -84,11 +86,13 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
 
   // Final step: adds the field to the editor
   annotator.editor.addField(function(annotation) {
-    console.log('adding field');
     container.innerHTML = '';
-
-    // TODO this should list existing tags, not empty
-
+    if (annotation && annotation.tags) { 
+      jQuery.each(annotation.tags, function(idx, topic) {
+        var css_class = (topic.status == 'rejected') ? 'rejected' : 'accepted';
+        addTag(annotation, topic, css_class);
+      });
+    }
     return container;
   });
 }
