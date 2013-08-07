@@ -12,14 +12,12 @@ they are not only strings, but (underneath the hood) include a link to their cor
 
 ## Live Demo
 
-A live demo of the plugin is available [here](http://annotorious.github.com/demos/semantic-tagging-preview.html).
+A live demo of the plugin is available [here](http://annotorious.github.io/demos/semantic-tagging-preview.html).
 Beware: beta!!
 
-## Building Minified JS
+## Client
 
-* Install UglifyJS: ``npm install uglify-js -g``
-
-* Run uglify on the script file: ``uglifyjs client/semantic-tagging-plugin.js -o semantic-tagging.min.js``
+The client library relies on [jQuery](http://jquery.com)
 
 ## TODO
 
@@ -28,6 +26,5 @@ contribute!
 
 __TODO__ @behas: add server side Python NER/DBpedia linking scripts
 
-__TODO__ once we get that far, create a minified version (with uglify.js)
 
 
