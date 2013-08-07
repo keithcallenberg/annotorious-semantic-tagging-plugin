@@ -11,6 +11,12 @@ annotorious.plugin.SemanticTagging.prototype._extendPopup = function(annotator) 
         el.href = '#';
         el.className = 'semtagging-tag semtagging-popup-tag';
         el.innerHTML = tag.title;
+
+        if (tag.status == 'rejected')
+          jQuery(el).addClass('rejected');
+        else 
+          jQuery(el).addClass('accepted');
+
         popupContainer.appendChild(el);
       });
     }
