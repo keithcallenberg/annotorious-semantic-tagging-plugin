@@ -15,6 +15,12 @@ they are not only strings, but (underneath the hood) include a link to their cor
 A live demo of the plugin is available [here](http://annotorious.github.com/demos/semantic-tagging-preview.html).
 Beware: beta!!
 
+## Building Minified JS
+
+* Install UglifyJS: ``npm install uglify-js -g``
+
+* Run uglify on the script file: ``uglifyjs client/semantic-tagging-plugin.js -o semantic-tagging.min.js``
+
 ## TODO
 
 There are several TODOs in the code. [Get in touch](http://groups.google.com/group/annotorious) if you want to

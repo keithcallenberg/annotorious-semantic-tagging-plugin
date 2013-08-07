@@ -1,3 +1,18 @@
+/**
+ * A plugin that adds 'Semantic Tagging' functionality to Annotorious.
+ * While typing an annotation in the editor, the text is sent to the plugin's 
+ * server counterpart for Named Entity Recognition (NER). Recognized entities
+ * are suggested as possible tags, and the user can add them to the annotation
+ * by clicking on them. Tags are Semantic Tags in the sense that they are not
+ * just strings, but (underneath the hood) include a URI pointing to a concept
+ * in a specific 'knowledge context', hosted at the server.
+ * 
+ * The config options for the plugin require a field named 'endpoint_url',
+ * holding the URL of the server endpoint to use as the NER/tag-suggestion
+ * service.
+ *
+ * @param {Object=} opt_config_options the config options
+ */
 annotorious.plugin.SemanticTagging = function(opt_config_options) {
   /** @private **/
   this._tags = [];
@@ -13,62 +28,6 @@ annotorious.plugin.SemanticTagging = function(opt_config_options) {
 }
 
 annotorious.plugin.SemanticTagging.prototype.onInitAnnotator = function(annotator) {
-  // Popup extension: show existing tags
-  annotator.popup.addField(function(annotation) {
-    var popupContainer = document.createElement('div');
-    if (annotation.tags) {
-      jQuery.each(annotation.tags, function(idx, tag) {
-        var el = document.createElement('a');
-        el.href = '#';
-        el.className = 'semantic-tag';
-        el.innerHTML = tag.title;
-        popupContainer.appendChild(el);
-      });
-    }
-    return popupContainer;
-  });
-
-  // Editor, step 1 - add a key listener
-  var self = this;
-  var container = document.createElement('div');
-  annotator.editor.element.addEventListener('keyup', function(event) {
-    var annotation = annotator.editor.getAnnotation();
-    var text = annotation.text;
-
-    if (text.length > 5 && text[text.length - 1] == ' ' || text[text.length - 1] == '.') {
-      jQuery.getJSON(self._ENDPOINT_URI + text, function(data) {
-        if (data.detectedTopics.length > 0) {
-          jQuery.each(data.detectedTopics, function(idx, topic) {
-            // If the tag is not in the list of suggestions yet, add it now
-            if (!self._tags[topic.id]) {
-              self._tags[topic.id] = topic;
-
-              var link = document.createElement('a');
-              link.href = '#';
-              link.innerHTML = topic.title;
-              container.appendChild(link);
-
-              // TODO click should toggle, rather than add (and add, and add, and add...)
-              jQuery(link).addClass('semantic-tag').click(function() {
-                if (!annotation.tags)
-                  annotation.tags = [];
-                
-                annotation.tags.push(topic);
-                jQuery(link).addClass('selected');
-              });
-            }
-          });
-        }
-      });
-    }
-  });
-
-  // Editor, step 2 - add a field (that empties itself)
-  annotator.editor.addField(function(annotation) {
-    container.innerHTML = '';
-
-    // TODO this should list existing tags, not empty
-
-    return container;
-  });
+  this._extendPopup(annotator);
+  this._extendEditor(annotator);
 }
