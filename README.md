@@ -26,5 +26,9 @@ contribute!
 
 __TODO__ @behas: add server side Python NER/DBpedia linking scripts
 
+## License
+
+The Annotorious Semantic Tagging Plugin is licensed under the Apache 2 License.
+
 
 
