@@ -17,7 +17,7 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
     self._tags[topic.id] = topic;
 
     var link = document.createElement('a');
-    link.href = '#';
+    link.style.cursor = 'pointer';
     link.className = 'semtagging-tag semtagging-editor-tag';
     link.innerHTML = topic.title;
     container.appendChild(link);
