@@ -27,26 +27,26 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
       jqLink.addClass(opt_css_class);
 
     jqLink.click(function() {
-      if (!annotation.tags)
-        annotation.tags = [];
+      var myAnnotation = {
+          /** The URL of the image where the annotation should go **/
+          src : 'http://www.example.com/myimage.jpg',
 
-      if (jqLink.hasClass('accepted')) {
-        // Toggle to 'rejected'
-        jqLink.toggleClass('accepted rejected');
-        topic.status = 'rejected';
-      } else if (jqLink.hasClass('rejected')) {
-        // Toggle to 'don't care'
-        jqLink.removeClass('rejected');
-        delete topic.status;
-        var idx = annotation.tags.indexOf(topic);
-        if (idx > -1)
-          annotation.tags.splice(idx, 1);
-      } else {
-        // Toggle to 'accepted'
-        jqLink.addClass('accepted');
-        delete topic.status;
-        annotation.tags.push(topic);
+          /** The annotation text **/
+          text : 'My annotation',
+
+          /** The annotation shape **/
+          shapes : [{
+              /** The shape type **/
+              type : 'rect',
+
+              /** 'units' only required for pixel coordinates **/
+              units: 'pixel',
+
+              /** The shape geometry (pixel coordinates) **/
+              geometry : { x : 10, y: 10, width : 40, height: 60 }
+          }]
       }
+      annotator.addAnnotation(myAnnotation);
     });
   };
 
