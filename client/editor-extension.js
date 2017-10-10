@@ -6,9 +6,9 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
   var self = this,
       container = document.createElement('div'),
       idle_timeout,
-      MIN_TEXT_LENGTH = 5,   // minimum length annotation must have before being allowed to the NER server
+      MIN_TEXT_LENGTH = 3,   // minimum length annotation must have before being allowed to the NER server
       TRIGGER_CHARS = ". ,", // characters that force an NER lookup
-      IDLE_THRESHOLD = 500;  // NER is also done after IDLE_THRESHOLD milliseconds of key idleness
+      IDLE_THRESHOLD = 300;  // NER is also done after IDLE_THRESHOLD milliseconds of key idleness
 
   container.className = 'semtagging-editor-container';
 
