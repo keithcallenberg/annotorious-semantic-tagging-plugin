@@ -27,7 +27,7 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
       jqLink.addClass(opt_css_class);
 
     jqLink.click(function() {
-      $('.annotorious-editor-button-save').click();
+      annotator.editor.close();
     });
   };
 
