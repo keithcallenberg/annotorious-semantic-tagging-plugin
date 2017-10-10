@@ -27,26 +27,7 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
       jqLink.addClass(opt_css_class);
 
     jqLink.click(function() {
-      var myAnnotation = {
-          /** The URL of the image where the annotation should go **/
-          src : 'http://www.example.com/myimage.jpg',
-
-          /** The annotation text **/
-          text : 'My annotation',
-
-          /** The annotation shape **/
-          shapes : [{
-              /** The shape type **/
-              type : 'rect',
-
-              /** 'units' only required for pixel coordinates **/
-              units: 'pixel',
-
-              /** The shape geometry (pixel coordinates) **/
-              geometry : { x : 10, y: 10, width : 40, height: 60 }
-          }]
-      }
-      annotator.addAnnotation(myAnnotation);
+      $('.annotorious-editor-button-save').click();
     });
   };
 
