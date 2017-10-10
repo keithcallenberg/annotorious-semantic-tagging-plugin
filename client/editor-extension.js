@@ -46,8 +46,7 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
         jqLink.addClass('accepted');
         delete topic.status;
         annotation.tags.push(topic);
-        annotator.addAnnotation(annotation);
-        annotator.stopSelection();
+        this._btnSave.click();
       }
     });
   };
