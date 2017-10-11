@@ -18,7 +18,7 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
 
     var link = document.createElement('a');
     link.style.cursor = 'pointer';
-    link.className = 'semtagging-tag semtagging-editor-tag';
+    link.className = 'semtagging-tag semtagging-editor-tag annotorious-editor-button-save';
     link.innerHTML = topic.title;
     container.appendChild(link);
 
@@ -26,10 +26,9 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
     if (opt_css_class)
       jqLink.addClass(opt_css_class);
 
-    jqLink.click(function() {
-      jQuery('.annotorious-editor-text').html(topic.title);
-      jQuery('.annotorious-editor-button-save').click();
-    });
+//     jqLink.click(function() {
+//       jQuery('.annotorious-editor-text').html(topic.title);
+//     });
   };
 
   // Does the NER lookup
