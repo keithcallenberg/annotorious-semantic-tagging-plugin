@@ -27,7 +27,13 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
       jqLink.addClass(opt_css_class);
 
     jqLink.click(function() {
-      annotator.editor.close();
+      var annotation = annotator.editor.getAnnotation();
+      var myAnnotation = {
+          src : annotation.src,
+          text : topic.title,
+          shapes : annotation.shapes
+      };
+      anno.addAnnotation(myAnnotation);
     });
   };
 
