@@ -57,7 +57,7 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
     var annotation = annotator.editor.getAnnotation(),
         text = annotation.text;
 
-    if (text.length > self._MINLENGTH) {
+    if (text.length >= self._MINLENGTH) {
       restartIdleTimeout(annotation, text);
 
       if (TRIGGER_CHARS.indexOf(text[text.length - 1]) > -1)
