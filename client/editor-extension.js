@@ -25,9 +25,13 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
     if (opt_css_class)
       jqLink.addClass(opt_css_class);
 
-//     jqLink.click(function() {
-//       jQuery('.annotorious-editor-text').html(topic.title);
-//     });
+    jqLink.click(function() {
+        if (!annotation.tags)
+          annotation.tags = [];
+        jqLink.addClass('accepted');
+        delete topic.status;
+        annotation.tags.push(topic);
+     });
   };
 
   // Does the NER lookup
