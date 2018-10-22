@@ -6,7 +6,6 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
   var self = this,
       container = document.createElement('div'),
       idle_timeout,
-      MIN_TEXT_LENGTH = 3,   // minimum length annotation must have before being allowed to the NER server
       TRIGGER_CHARS = ". ,", // characters that force an NER lookup
       IDLE_THRESHOLD = 300;  // NER is also done after IDLE_THRESHOLD milliseconds of key idleness
 
@@ -57,7 +56,7 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
     var annotation = annotator.editor.getAnnotation(),
         text = annotation.text;
 
-    if (text.length > MIN_TEXT_LENGTH) {
+    if (text.length > self._MINLENGTH) {
       restartIdleTimeout(annotation, text);
 
       if (TRIGGER_CHARS.indexOf(text[text.length - 1]) > -1)
