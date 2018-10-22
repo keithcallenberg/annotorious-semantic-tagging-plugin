@@ -23,10 +23,9 @@ annotorious.plugin.SemanticTagging = function(opt_config_options) {
   if (this._ENDPOINT_URI[this._ENDPOINT_URI.length - 1] != '/')
     this._ENDPOINT_URI += '/';
 
-  this._ENDPOINT_URI += 
-    'services/wikify?minProbability=0.1&disambiguationPolicy=loose&responseFormat=json&source=';
-  
+  this._ENDPOINT_URI += '?source=';
   this._MINLENGTH = opt_config_options['min_length'];
+
 }
 
 annotorious.plugin.SemanticTagging.prototype.onInitAnnotator = function(annotator) {

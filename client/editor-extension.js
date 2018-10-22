@@ -7,7 +7,7 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
       container = document.createElement('div'),
       idle_timeout,
       TRIGGER_CHARS = ". ,", // characters that force an NER lookup
-      IDLE_THRESHOLD = 500;  // NER is also done after IDLE_THRESHOLD milliseconds of key idleness
+      IDLE_THRESHOLD = 300;  // NER is also done after IDLE_THRESHOLD milliseconds of key idleness
 
   container.className = 'semtagging-editor-container';
 
@@ -17,7 +17,7 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
 
     var link = document.createElement('a');
     link.style.cursor = 'pointer';
-    link.className = 'semtagging-tag semtagging-editor-tag';
+    link.className = 'semtagging-tag semtagging-editor-tag annotorious-editor-button-save';
     link.innerHTML = topic.title;
     container.appendChild(link);
 
@@ -25,28 +25,9 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
     if (opt_css_class)
       jqLink.addClass(opt_css_class);
 
-    jqLink.click(function() {
-      if (!annotation.tags)
-        annotation.tags = [];
-
-      if (jqLink.hasClass('accepted')) {
-        // Toggle to 'rejected'
-        jqLink.toggleClass('accepted rejected');
-        topic.status = 'rejected';
-      } else if (jqLink.hasClass('rejected')) {
-        // Toggle to 'don't care'
-        jqLink.removeClass('rejected');
-        delete topic.status;
-        var idx = annotation.tags.indexOf(topic);
-        if (idx > -1)
-          annotation.tags.splice(idx, 1);
-      } else {
-        // Toggle to 'accepted'
-        jqLink.addClass('accepted');
-        delete topic.status;
-        annotation.tags.push(topic);
-      }
-    });
+//     jqLink.click(function() {
+//       jQuery('.annotorious-editor-text').html(topic.title);
+//     });
   };
 
   // Does the NER lookup
