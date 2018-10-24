@@ -64,6 +64,9 @@ annotorious.plugin.SemanticTagging.prototype._extendEditor = function(annotator)
         doNER(annotation, text);
     }
   });
+  
+  // add a base lookup for 0-length default display
+  doNER(annotation, "");
 
   // Final step: adds the field to the editor
   annotator.editor.addField(function(annotation) {
